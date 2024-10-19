@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Código</title>
+    <style>
+        /* Estilos básicos para una página oscura */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 18px;
+            width: 300px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            background-color: #333;
+            color: #fff;
+        }
+
+        input[type="text"]::placeholder {
+            color: #aaa;
+        }
+
+        /* Añadir un efecto cuando el input está enfocado */
+        input[type="text"]:focus {
+            border: 2px solid #1db954;
+        }
+
+        /* Mensaje oculto inicialmente */
+        .hidden {
+            display: none;
+        }
+
+        #message {
+            white-space: pre-line;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        /* Animación de titileo */
+        @keyframes blink {
+            50% {
+                background-color: #fff;
+                color: black;
+            }
+        }
+
+        .blinking {
+            animation: blink 0.1s step-start 10 alternate;
+        }
+
+        input[type="text"] {
+            transition: opacity 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" id="codeInput" placeholder="Ingrese el código">
+        <div id="message" class="hidden"></div>
+    </div>
+    <script>
+        // Almacenar el mensaje que se escribirá en pantalla
+        const nombresValores = [
+            "RICARDO YAÑEZ",
+            "JUAN EDWARD",
+            "BRYAN ANDRE",
+            "ANGELES HIKARI",
+            "MAURI CACERES",
+            "JOHN LINARES",
+            "JOSUE NINA",
+            "MARCELO PSUDOCIENCIA",
+            "DESA CARLO",
+            "EDSON MEDINA",
+            "ALEXANDER TOTORA",
+            "GIAN NICKOLAS",
+            "ANDRE GAMBOA",
+            "KARITO SANTOS",
+            "GRESSIA YAÑEZ",
+            "JIM CARDENAS",
+            "IZBET ARELI",
+            "BONI VALDERRAMA",
+            "RENZO",
+            "LUCIA VILCAHUAMAN",
+            "PIERINA BECERRA",
+            "SANDALY ZAMALLOA",
+            "MATT VALER",
+            "JOHAN DEL SOLAR",
+            "ANTHONY SOTOMAYOR",
+            "Fabiola Colque",
+            "Hebert Alarcón",
+            "Steven Marquez",
+            "Oscar Ponce",
+            "Kiara Fernández",
+            "Almendra Mora",
+            "Yordy Farfan"
+        ];
+
+        const numerosAleatorios = [
+            348921,
+            762543,
+            195780,
+            482316,
+            903845,
+            768254,
+            123456,
+            654321,
+            987654,
+            321654,
+            456789,
+            789456,
+            234567,
+            890123,
+            567890,
+            456123,
+            789012,
+            345678,
+            678901,
+            234890,
+            345890,
+            678234,
+            890234,
+            901234,
+            123890,
+            345123,
+            789345,
+            123789,
+            987321,
+            456098,
+            654789,
+            234765,
+            876543
+        ];
+        // const typewriterSound = new Audio('mixkit-hard-typewriter-click-1119.wav'); // Placeholder URL for typewriter sound
+        // Variables del DOM
+        const input = document.getElementById('codeInput');
+        const messageDiv = document.getElementById('message');
+
+        // Evento cuando se escribe en el input
+        input.addEventListener('input', function () {
+            const enteredCode = parseInt(input.value.trim());
+            const index = numerosAleatorios.indexOf(enteredCode);
+            if (index !== -1) {
+                console.log(`Número encontrado en el índice: ${index}`); // Muestra el índice en la consola
+                startBlinkingEffect(index); // Pasa el índice a la función
+            }
+        });
+
+        // Función para hacer que la página titile
+        function startBlinkingEffect(index) {
+            document.body.classList.add('blinking');
+
+            setTimeout(() => {
+                document.body.classList.remove('blinking');
+                input.style.display = 'none';
+                displayMessageLetterByLetter(index); // Pasa el índice a la función
+            }, 2000); // 2 segundos de titileo
+        }
+
+        // Función para mostrar el mensaje letra por letra
+        function displayMessageLetterByLetter(index) {
+            const messageContent = `
+HALLOWEEN
+
+INVITACION PARA: ${nombresValores[index]}
+
+Día: 31 de octubre.
+Hora: 9:00 pm.
+Lugar: El bunker.
+
+Temática: ASESINOS
+La temática consiste en disfrazarse de un asesino.
+Puede ser ficticio.
+Puede ser real.
+Puedes crearlo.
+
+Concurso:
+- Mejor disfraz. (Individual)
+- Mejor equipo. (Los equipos se crearán el mismo día)
+
+Actividades:
+Música/DJ/Banda?
+Juegos por equipos. Performance. 
+Competencias. Duelo a Muerte.
+
+Premiación: Trago / Dinero en efectivo
+
+Inversión: S/.20.00 (bebida y premiación)
+Fecha límite de pago 27/10/24 23:59
+
+Invitados: Es una fiesta privada. Si la persona se compromete puede entrar, previa confirmación.
+Las invitaciones son individuales, si no está en la lista No ingresa.
+
+No se dejará ingresar a las personas que no cuenten con caracterización.
+No se dejará ingresar a las personas que no cuenten con caracterización.
+No se dejará ingresar a las personas que no cuenten con caracterización.
+No se dejará ingresar a las personas que no cuenten con caracterización.
+No se dejará ingresar a las personas que no cuenten con caracterización.
+No se dejará ingresar a las personas que no cuenten con caracterización.
+No se dejará ingresar a las personas que no cuenten con caracterización.
+No se dejará ingresar a las personas que no cuenten con caracterización.
+No se dejará ingresar a las personas que no cuenten con caracterización.
+No se dejará ingresar a las personas que no cuenten con caracterización.
+No se dejará ingresar a las personas que no cuenten con caracterización.
+No se dejará ingresar a las personas que no cuenten con caracterización.
+No se dejará ingresar a las personas que no cuenten con caracterización.
+No se dejará ingresar a las personas que no cuenten con caracterización.
+No se dejará ingresar a las personas que no cuenten con caracterización.
+
+Sent from my IPhone.
+`;
+
+            let messageIndex = 0;
+
+            messageDiv.classList.remove('hidden');
+
+            const interval = setInterval(() => {
+                if (messageIndex < messageContent.length) {
+                    messageDiv.innerHTML += messageContent[messageIndex];
+                    // sound.play();
+                    messageIndex++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 30); // Velocidad de aparición de letras (30ms)
+        }
+
+    </script>
+</body>
+
+</html>

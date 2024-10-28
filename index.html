@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Código</title>
     <style>
-        /* Estilos básicos para una página oscura */
         body {
             margin: 0;
             padding: 0;
@@ -18,11 +16,11 @@
             font-family: Arial, sans-serif;
             color: white;
         }
-
         .container {
             text-align: center;
+            max-height: 90vh; /* Limitar el alto del contenedor */
+            overflow-y: auto; /* Habilitar el desplazamiento */
         }
-
         input[type="text"] {
             padding: 10px;
             font-size: 18px;
@@ -32,53 +30,39 @@
             outline: none;
             background-color: #333;
             color: #fff;
+            transition: opacity 0.5s;
         }
-
         input[type="text"]::placeholder {
             color: #aaa;
         }
-
-        /* Añadir un efecto cuando el input está enfocado */
         input[type="text"]:focus {
             border: 2px solid #1db954;
         }
-
-        /* Mensaje oculto inicialmente */
         .hidden {
             display: none;
         }
-
         #message {
             white-space: pre-line;
             margin-top: 20px;
             font-size: 20px;
         }
-
-        /* Animación de titileo */
         @keyframes blink {
             50% {
                 background-color: #fff;
                 color: black;
             }
         }
-
         .blinking {
             animation: blink 0.1s step-start 10 alternate;
         }
-
-        input[type="text"] {
-            transition: opacity 0.5s;
-        }
     </style>
 </head>
-
 <body>
     <div class="container">
         <input type="text" id="codeInput" placeholder="Ingrese el código">
         <div id="message" class="hidden"></div>
     </div>
     <script>
-        // Almacenar el mensaje que se escribirá en pantalla
         const nombresValores = [
             "RICARDO YAÑEZ",
             "JUAN EDWARD",
@@ -123,74 +107,33 @@
         ];
 
         const numerosAleatorios = [
-            348921,
-            762543,
-            195780,
-            482316,
-            903845,
-            768254,
-            123456,
-            654321,
-            987654,
-            321654,
-            456789,
-            789456,
-            234567,
-            890123,
-            567890,
-            456123,
-            789012,
-            345678,
-            678901,
-            234890,
-            345890,
-            678234,
-            890234,
-            901234,
-            123890,
-            345123,
-            789345,
-            123789,
-            987321,
-            456098,
-            654789,
-            234765,
-            129384,
-            647281,
-            538926, 
-            872316, 
-            491028,
-            988431,
-            475932,
-            696969
+            348921, 762543, 195780, 482316, 903845, 768254, 123456, 654321,
+            987654, 321654, 456789, 789456, 234567, 890123, 567890, 456123,
+            789012, 345678, 678901, 234890, 345890, 678234, 890234, 901234,
+            123890, 345123, 789345, 123789, 987321, 456098, 654789, 234765,
+            129384, 647281, 538926, 872316, 491028, 988431, 475932, 696969
         ];
-        // const typewriterSound = new Audio('mixkit-hard-typewriter-click-1119.wav'); // Placeholder URL for typewriter sound
-        // Variables del DOM
+
         const input = document.getElementById('codeInput');
         const messageDiv = document.getElementById('message');
 
-        // Evento cuando se escribe en el input
         input.addEventListener('input', function () {
             const enteredCode = parseInt(input.value.trim());
             const index = numerosAleatorios.indexOf(enteredCode);
             if (index !== -1) {
-                console.log(`Número encontrado en el índice: ${index}`); // Muestra el índice en la consola
-                startBlinkingEffect(index); // Pasa el índice a la función
+                startBlinkingEffect(index);
             }
         });
 
-        // Función para hacer que la página titile
         function startBlinkingEffect(index) {
             document.body.classList.add('blinking');
-
             setTimeout(() => {
                 document.body.classList.remove('blinking');
                 input.style.display = 'none';
-                displayMessageLetterByLetter(index); // Pasa el índice a la función
-            }, 2000); // 2 segundos de titileo
+                displayMessageLetterByLetter(index);
+            }, 2000);
         }
 
-        // Función para mostrar el mensaje letra por letra
         function displayMessageLetterByLetter(index) {
             const messageContent = `
 HALLOWEEN
@@ -244,21 +187,18 @@ Sent from mmy IPhone.
 `;
 
             let messageIndex = 0;
-
             messageDiv.classList.remove('hidden');
 
             const interval = setInterval(() => {
                 if (messageIndex < messageContent.length) {
                     messageDiv.innerHTML += messageContent[messageIndex];
-                    // sound.play();
+                    messageDiv.scrollTop = messageDiv.scrollHeight; // Desplazarse al final
                     messageIndex++;
                 } else {
                     clearInterval(interval);
                 }
-            }, 30); // Velocidad de aparición de letras (30ms)
+            }, 30);
         }
-
     </script>
 </body>
-
 </html>
